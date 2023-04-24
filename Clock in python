@@ -1,0 +1,36 @@
+#How to create a Clock in Pyhton using Tkinter
+
+import tkinter as tk
+import datetime
+
+class ClockApp:
+    def __init__(self, master):
+        self.master = master
+        master.title("Time Clock")
+
+        # Create label to display time
+        self.time_label = tk.Label(master, font=('Arial', 80))
+        self.time_label.pack()
+
+        # Start the clock
+        self.update_clock()
+
+    def update_clock(self):
+        # Get current time
+        now = datetime.datetime.now()
+
+        # Format the time as a string
+        time_str = now.strftime("%H:%M:%S")
+
+        # Update the label text
+        self.time_label.config(text=time_str)
+
+        # Update the clock every 1 second
+        self.master.after(1000, self.update_clock)
+
+# Create the Tkinter application
+root = tk.Tk()
+app = ClockApp(root)
+
+# Run the application
+root.mainloop()
